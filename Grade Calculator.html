@@ -1,0 +1,113 @@
+<!DOCtype html>
+<html>
+<head>
+    <link rel="stylesheet" type= "text/css" href="styler.css"
+</head>
+<body> 
+    <h1>GATech Grade Calculator</h1>
+<table id="grades">
+	<tr>
+       <th>Category</th>
+       <th>Weight</th>
+       <th>Grade</th>
+    </tr>
+    <tr>
+       <th>Tests</th>
+       <th> <form id="grcalc" action="" method="get">
+               <input type="number" name="Testw" min="0" max="100" required> %
+       </th>
+       <th>
+               <input type="number" name="Testg" min="0" required> %    
+       </th>
+    </tr>
+    <tr>
+       <th>Homework</th>
+       <th>
+               <input type="number" name="HWw" min="0" max="100" required> %
+       </th>
+       <th>
+               <input type="number" name="HWg" min="0" required> %  
+       </th>
+    </tr>   
+    <tr>
+       <th>Quiz</th>
+       <th>
+               <input type="number" name="Quizw" min="0" max="100" required> %   
+       </th>
+       <th>
+               <input type="number" name="Quizg" min="0" required> % 
+       </th>
+    </tr>
+    <tr>
+       <th>Class Participation</th>
+       <th>
+               <input type="number" name="ClassPw" min="0" max="100" required> %
+       </th>
+       <th> 
+               <input type="number" name="ClassPg" min="0" required> %
+       </th>
+    </tr>
+    <tr>
+       <th>Extra Credit</th>
+       <th>Added Straight onto Final Grade!!</th>
+       <th> 
+               <input type="number" name="Extrag" min="0" max="100" required> %       
+       </th>
+    </tr>
+    <tr>
+        <th>Final exam</th>
+       <th>
+          <input type="number" name="finalw" max="100"required> % 
+        </th>
+    </tr>
+     <tr>
+       <th>What my Dream Grade for the class is</th>
+       <th> 
+               <input type="number" name="totalgrade" min="0" required> %
+               <input type="button" onclick="gradecalc()" value="Submit">
+       </th>  
+    </tr>
+    </form>   
+</table>
+<p> You've got to Get a...</p>
+    <p2 id=needgrade></p2>
+    <p>on the Final for that Grade!!</p>
+    
+<script>
+function gradecalc()
+    
+    {
+    var testperc= document.getElementsByName("Testw")[0].value;
+    var hwperc = document.getElementsByName("HWw")[0].value;
+    var quizperc = document.getElementsByName("Quizw")[0].value;
+    var cpperc = document.getElementsByName("ClassPw")[0].value;
+    var testgrade = document.getElementsByName("Testg")[0].value;
+    var hwgrade = document.getElementsByName("HWg")[0].value;
+    var quizgrade = document.getElementsByName("Quizg")[0].value;
+    var cpgrade = document.getElementsByName("ClassPg")[0].value;
+    var ecgrade = document.getElementsByName("Extrag")[0].value;
+    var finalperc = document.getElementsByName("finalw")[0].value;   
+    var finalperc = document.getElementsByName("finalw")[0].value;   
+    var wantedgrade = document.getElementsByName("totalgrade")[0].value;
+    var sum = parseFloat(testperc) + parseFloat(hwperc) + parseFloat(quizperc) + parseFloat(cpperc) + parseFloat(finalperc);
+      // if the inputs are less than 100 than they are valid 
+   if(sum == 100){
+    //calculates the needed point values of the data
+        var testpoints = (testperc / 100) * testgrade;
+        var hwpoints = (hwperc / 100) * hwgrade;
+        var quizpoints = (quizperc / 100) * quizgrade;
+        var cppoints= (cpperc / 100) * cpgrade;
+        //subtratcs all point values from the wanted garde 
+        var pointsneeded = (wantedgrade - testpoints - hwpoints - quizpoints - cppoints- ecgrade);
+        //points need dicded by its weight is the perc as a decimal
+        var finalgrade = (pointsneeded / finalperc ) * 100;
+        document.getElementById("needgrade").innerHTML= finalgrade;
+   }else {
+        document.getElementById("needgrade").innerHTML= "Inputs dont equal 100 Percent. Please Change them so the sum total of the class is 100 percent.";
+        //else tells the user that they input too much data
+    
+   }
+    }
+    
+</script>
+</html>
